@@ -1,3 +1,5 @@
+drop table if exists item_prices;
+drop table if exists dict_item_prices;
 
 create table item_prices(
 	item_id numeric(21,0), item_name char(150), 
@@ -13,6 +15,7 @@ insert into item_prices values (478, 'efspjowziy', 945.94, '2022-11-16 16:37:17'
 insert into item_prices values (860, 'jgfigutrjy', 310.95, '2022-10-23 16:37:17');
 insert into item_prices values (860, 'jgfigutrjy', 478.58, '2022-10-18 16:37:17');
 insert into item_prices values (860, 'jgfigutrjy', 355.02, '2022-11-19 16:37:17');
+
 
 create table dict_item_prices as
 with tmp_table as (

@@ -1,5 +1,7 @@
 
-drop table transaction_details;
+drop table if exists transaction_details;
+drop table if exists customer_aggr;
+
 create table transaction_details(
 	transaction_id numeric(21,0), customer_id numeric(21,0), 
 	item_id numeric(21, 0), item_number numeric(8,0), transaction_dttm timestamp
@@ -18,6 +20,8 @@ insert into transaction_details values (604, 3, 478, 3, '2022-11-18 16:40:10');
 insert into transaction_details values (919, 4, 860, 3, '2022-10-26 16:40:10');
 insert into transaction_details values (160, 5, 860, 2, '2022-10-15 16:40:10');
 insert into transaction_details values (961, 6, 860, 3, '2022-11-19 16:40:10');
+
+create table customer_aggr as
 
 with table_with_item_id as 
 (
@@ -58,5 +62,5 @@ select tmp.customer_id,tmp2.item_id,sum(tmp.sum_by_items)
 	group by  tmp.customer_id,tmp2.item_id
 )
 
-select distinct customer_id, dict_item_prices.item_name as top_item_lm, sum as amount_spent_lm from table_with_item_id
+select distinct customer_id, sum as amount_spent_lm, dict_item_prices.item_name as top_item_lm from table_with_item_id
 join dict_item_prices on  table_with_item_id.item_id = dict_item_prices.item_id
