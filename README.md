@@ -1,5 +1,6 @@
-# data_engineer_test
+# Test for data engineer/scientist
 All solutions use PostgreSQL
+
 1.[Task 1](https://github.com/IllCher/data_engineer_test/blob/main/task1.sql)
 
 2.[Task 2](https://github.com/IllCher/data_engineer_test/blob/main/task2.sql)
