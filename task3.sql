@@ -13,6 +13,8 @@ insert into task3 values (214, 'nhxzhjtpul', 971.26, '2022-12-06 13:17:08');
 insert into task3 values (214, 'nhxzhjtpul', 924.99, '2022-12-10 13:17:08');
 insert into task3 values (214, 'nhxzhjtpul', 194.71, '2022-11-30 13:17:08');
 */
+
+create table task3_result as
 with tmp_table as (
 	select item_id, item_name, item_price, created_dttm::date as valid_from_dt, 
 	(
