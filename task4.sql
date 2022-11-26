@@ -28,14 +28,14 @@ with table_with_item_id as
 
 with tmp_table as (
 select 
-transaction_id, item_number, customer_id, transaction_details.item_id, item_price, 
-transaction_dttm::date, valid_from_dt, valid_to_dt
-from transaction_details 
-join dict_item_prices 
-on transaction_details.item_id = dict_item_prices.item_id
-where transaction_details.transaction_dttm::date < dict_item_prices.valid_to_dt 
-and transaction_details.transaction_dttm::date > dict_item_prices.valid_from_dt and
-	transaction_details.transaction_dttm::date - CURRENT_DATE < 30
+	transaction_id, item_number, customer_id, transaction_details.item_id, item_price, 
+	transaction_dttm::date, valid_from_dt, valid_to_dt
+	from transaction_details 
+	join dict_item_prices 
+	on transaction_details.item_id = dict_item_prices.item_id
+	where transaction_details.transaction_dttm::date < dict_item_prices.valid_to_dt 
+		and transaction_details.transaction_dttm::date > dict_item_prices.valid_from_dt 
+		and transaction_details.transaction_dttm::date - CURRENT_DATE < 30
 )
 
 
@@ -49,7 +49,7 @@ select tmp.customer_id,tmp2.item_id,sum(tmp.sum_by_items)
 	(
 	select tmp.customer_id,tmp.item_id from 
 		(select customer_id, item_id, sum(item_number * item_price) as sum_by_items from tmp_table
-			group by customer_id, item_id) as tmp
+		 group by customer_id, item_id) as tmp
 	join( 
 		select tmp.customer_id, max(tmp.sum_by_items) as mv from
 				(select customer_id, item_id, sum(item_number * item_price) as sum_by_items from tmp_table
