@@ -1,4 +1,5 @@
 drop table if exists posts;
+drop table if exists results;
 
 create table posts(
 	id numeric(21,0), created_at timestamp, 
