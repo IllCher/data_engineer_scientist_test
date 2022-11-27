@@ -8,6 +8,7 @@ insert into test values (3, 'Маша', 19);
 insert into test values (4, 'Марина', 23);
 insert into test values (5, 'Сергей', 34);
 
+
 select name, age from test order by age limit 3;
 
 
@@ -37,4 +38,15 @@ from (
 ) tmp
 where row_nmb <= 3;
 
+
 select name, age from test order by age fetch first 3 row only;
+
+
+select name, age
+from (
+	select name, age,
+		avg(age) over() as average
+	from test
+) tmp
+where average > age
+order by age;
