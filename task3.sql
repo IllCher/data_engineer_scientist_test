@@ -29,7 +29,7 @@ with tmp_table as (
 	) as valid_to_dt from item_prices
 )
 select item_id, item_name, item_price, valid_from_dt, coalesce(valid_to_dt, '9999-12-31') as valid_to_dt from tmp_table
-
+order by item_name, valid_from_dt
 
 
 

@@ -20,6 +20,7 @@ insert into posts values (11, '2022-02-16 14:57:32', 'NFC: wireless payment');
 insert into posts values (12, '2022-03-17 16:16:17', 'Visa vs UnionPay');
 insert into posts values (13, '2022-03-17 18:01:00', 'Mastercard vs UnionPay');
 
+create table results as
 with mnth_dt_cnt as (
 	select 
 		DATE_TRUNC('month', created_at) as dt, 
